@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ivo3owl03xo"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ivo3owl03xo"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_i3m0e"]
 [ext_resource type="PackedScene" uid="uid://d38pudw2xfoii" path="res://scenes/player.tscn" id="2_op6u2"]
+[ext_resource type="PackedScene" uid="uid://cgaahe24cv5kc" path="res://hud.tscn" id="3_yg5i5"]
 
 [sub_resource type="Curve2D" id="Curve2D_lxsy1"]
 _data = {
@@ -11,6 +12,8 @@ point_count = 6
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_i3m0e")
+
+[node name="HUD" parent="." instance=ExtResource("3_yg5i5")]
 
 [node name="player" parent="." instance=ExtResource("2_op6u2")]
 collision_mask = 2
@@ -34,6 +37,7 @@ curve = SubResource("Curve2D_lxsy1")
 position = Vector2(0, -3)
 rotation = 1.5708
 
+[connection signal="hit" from="player" to="." method="game_over"]
 [connection signal="timeout" from="bugtimer" to="player" method="_on_bugtimer_timeout"]
 [connection signal="timeout" from="scoretimer" to="player" method="_on_scoretimer_timeout"]
 [connection signal="timeout" from="startimer" to="player" method="_on_startimer_timeout"]

@@ -9,8 +9,7 @@ var score
 @onready var startposition = $startposition
 
 
-func _ready():
-	new_game()
+
 func game_over():
 	$bugtimer.stop()
 	$scoretimer.stop()
@@ -19,8 +18,7 @@ func new_game():
 	$startimer.start()
 	$player.start_pos($startposition.position)
 	score = 0
-
-func _on_bugtimer_timeout() -> void:
+func _on_bugtimer_timeout():
 	pass # Replace with function body.
 	var bug = bug_scene.instantiate()
 	var bug_location = $"bugPath/bugpathlocation"
